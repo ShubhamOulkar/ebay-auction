@@ -26,9 +26,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['web-production-a6b6.up.railway.app', '127.0.0.1']
+ALLOWED_HOSTS = ['ebayauction.up.railway.app', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-a6b6.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://ebayauction.up.railway.app']
 
 # Application definition
 

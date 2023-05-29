@@ -1,0 +1,26 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<div class="container">
+    <h2>Create Auction</h2>
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-a2">
+            <form action="{% url 'create_listing' %}" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <p class="create-field">
+                <h4>Auction {{field.label}}</h4>
+                </p>
+                {{field}}
+                <p class="error-field">{{form.errors}}</p>
+                {% endfor %}
+                <a href="{% url 'add_category' %}"> Add New Category</a><br><br>
+                <input class="btn btn-secondary" type="submit" value="Create Listing">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

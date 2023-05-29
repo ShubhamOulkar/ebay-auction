@@ -1,0 +1,54 @@
+.bg {
+    background-color: rgb(234, 231, 231);
+}
+
+.navbar-brand,
+.nav-link {
+    color: black;
+    font-weight: 500;
+}
+
+.btn-anchor {
+    color: #fff;
+}
+
+a:hover,
+.btn:hover,
+.nav-link:hover {
+    color: rgb(150, 174, 174);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.order-last {
+    text-align: right;
+    padding-right: 4px;
+    padding-top: 4px;
+}
+.order-first{
+    padding-top: 4px;
+    padding-left: 6px;
+}
+.list {
+    margin: 0;
+    padding: 0 10% 0 12%;
+}
+
+.card-list {
+    padding: 1%;
+}
+
+.img-details {
+    width: 20rem;
+    height: auto;
+}
+.card-img-top {
+    height: 22rem;
+}
+.edit-button, .delete-button, .back-button {
+    color: #fff;
+}

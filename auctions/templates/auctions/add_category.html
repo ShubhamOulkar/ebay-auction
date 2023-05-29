@@ -1,0 +1,17 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-a2">
+            <form action="{% url 'add_category' %}" method="post">
+                {% csrf_token %}
+                <label for="new-category">Type New Category</label><br>
+                <input class="form-control" type="text" placeholder="New Category" name="new-category"><br>
+                <input class="btn btn-secondary" type="submit" value="Save Category">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<div class="px-4 py-5 px-md-5 text-center text-lg-start">
+    <div class="container">
+        <div class="row gx-lg-5 align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <h1 class="my-5 display-3 fw-bold ls-tight">Login Auction Account</h1>
+            </div>
+
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="card">
+                    <div class="card-body py-5 px-md-5">
+                        <div class="row">
+                            {% if message %}
+                            <div class="alert alert-danger" role="alert" >{{ message }}</div>
+                            {% endif %}
+                            <form action="{% url 'login' %}" method="post">
+                                {% csrf_token %}
+                                <div class="col-md-12 mb-4">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="username">User name</label>
+                                        <input class="form-control" type="text" name="username" placeholder="Username">
+                                    </div>
+                                </div>
+                                <!-- Password input -->
+                                <div class="col-md-12 mb-4">
+                                    <div class="form-outlin">
+                                        <label class="form-label" for="password">Password</label>
+                                        <input class="form-control" type="password" name="password"
+                                            placeholder="Password">
+                                    </div>
+                                </div>
+                                <!-- Submit button -->
+                                <div class="col-md-12 mb-4">
+                                    <button type="submit" class="btn btn-secondary">
+                                        Let me in
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!-- Register buttons -->
+                            <div class="text-center">
+                                <p>Don't have an account?</p>
+                                <a class="mx-3" href="{% url 'register' %}">
+                                    Register here</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

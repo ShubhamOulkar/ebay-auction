@@ -1,0 +1,22 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+ <div class="container">
+   <h2>Edit Auction</h2>
+   <div class="row">
+       <div class="col-12 col-md-12 col-lg-a2">
+           <form action="{% url 'edit_listing' object.pk %}" method="post">
+               {% csrf_token %}
+               {% for field in form %}
+                   <p class="create-field"><h4>Auction {{field.label}} </h4></p>
+                   {{field}}
+                   <p class="error-field">{{form.errors}}</p>
+               {% endfor %} <br>
+               <input class="btn btn-secondary" type="submit" value="Save Update">
+           </form>
+       </div>
+   </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,159 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<!-- * Auction Details section -->
+<div class="details" style="padding: 0 0 0 15%;">
+    <div class="card" style="width: 80%; align-items: center;">
+        <div class="container">
+            <div class="row">
+                <div class="col order-last" style="padding-right: 3%;">Updated on {{auction.date}}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col order-first"></div>
+                            <div class="col"></div>
+                            <div class="col order-last">
+                                {% if watchlist %}
+                                <form action="{% url 'remove_watchlist' auction.id %}" method="post">{% csrf_token %}
+                                    <input type="submit" class="btn btn-success" value="Remove form watchlist">
+                                </form>
+                                {% else %}
+                                <form action="{% url 'add_watchlist' auction.id %}" method="post">{% csrf_token %}<input
+                                        type="submit" class="btn btn-secondary" value="Add To watchlist"></form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col order-first">
+                    <h5 class="card-title">{{ auction.name }}</h5>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col order-first" style="padding-left: 0%; text-align: center;">
+                                {% if auction.is_active %}
+                                <a href="{% url 'inactive' auction.id %}"><input type="submit" class="btn btn-success"
+                                        value="Active"></a>
+                                {% else %}
+                                <a href="{% url 'active' auction.id %}"><input type="submit" class="btn btn-danger"
+                                        value="Inactive"></a>
+                                {% endif %}
+                            </div>
+                            <div class="col"></div>
+                            <div class="col order-last"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="{{auction.image}}" class="img-details" alt="{{auction.name}} ">
+        <div class="card-body">
+            <!-- ! Auction Details section -->
+            <h6><strong>User:</strong> {{auction.auction_user}}</h6>
+            <p><strong>Category:</strong> {{ auction.category }}</p>
+            <p><strong>Bidding starts:</strong> $ {{ auction.price }}</p>
+            <p class="text-success">All users Bidded {{count}} times.</p>
+            {% if not msg %}
+            <p class="text-danger">You bidded {{user_bid_count}} times and last bid was $ {{user_last_bid_amount}}.</p>
+            {% else %}
+            <p class="text-danger">{{ msg }}</p>
+            {% endif %}
+            <!-- ! Bidding section -->
+            <div class="row">
+                {% if auction.is_active %}
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    {% if request.user.is_authenticated %}
+                    <form action="{% url 'do_bid' auction.id %}" method="post">{% csrf_token %}
+                        <label for="bid"><strong>Bid for auction:</strong>
+                            <input type="number" name="bid" step="0.1" min="0" required>
+                            <input class="btn btn-secondary" type="submit" value="Do Bid">
+                        </label>
+                    </form>
+                    {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        <p style="color:rgb(53, 125, 242)">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% else %}
+                    <form action="#" method="post">{% csrf_token %}
+                        <label for="bid"><strong>Bid for auction:</strong>
+                            <input type="number" name="bid" step="0.1" min="0" required disabled>
+                            <input class="btn btn-secondary" type="submit" value="Do Bid" disabled>
+                        </label>
+                    </form>
+                    {% endif %}
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-6 text-primary">{{winner}}</div>
+                {% else %}
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <form action="#" method="post">{% csrf_token %}
+                        <label for="bid"><strong>Bid for auction:</strong>
+                            <input type="number" name="bid" step="0.1" min="0" required disabled>
+                            <input class="btn btn-secondary" type="submit" value="Do Bid" disabled>
+                        </label>
+                    </form>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-6 text-success">This auction is sold to {{winner.bidding_user}}.
+                </div>
+                {% endif %}
+            </div>
+            <!-- ! Edit and delete section -->
+            <p style="text-align: justify; padding-top: 1%;"><strong>Details:</strong> {{auction.description}}</p>
+            {% if request.user == auction.auction_user %}
+            <div class="row btn-group-justified">
+                <div class="col-sm-2 btn-group pt-2">
+                    <button class="btn btn-secondary btn-block"><a class="edit-button"
+                            href="{% url 'edit_listing' auction.id %}">Edit</a></button>
+                </div>
+                <div class="col-sm-2 btn-group pt-2">
+                    <button class="btn btn-secondary btn-block"><a class="delete-button"
+                            href="{% url 'delete_listing' auction.id %}">Delete</a></button>
+                </div>
+                <div class="col-8"></div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<br>
+<!-- * Comment Section -->
+<div class="details" style="padding: 0 0 0 15%; ">
+    <h5>Comments:</h5>
+    {% for comment in comments %}
+    <div style="width: 80%; align-items: center;">
+        <div class="container"
+            style="background-color: rgb(199, 198, 198);  border-top-right-radius: 1rem; border-top-left-radius: 1rem;">
+            <div class="row">
+                <div class="col order-last">{{comment.comment_date}}</div>
+                <div class="col"></div>
+                <div class="col order-first">
+                    <h6 class="card-title"><i
+                            class="fa-solid fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{comment.comment_user}}
+                    </h6>
+                </div>
+            </div>
+        </div>
+        <div class="card-body"
+            style="background-color: rgb(230, 226, 226);border-bottom-right-radius: 1rem; border-bottom-left-radius: 1rem;">
+            <p>{{comment.comment}}</p>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+</div>
+<!-- ! Add comment section -->
+{% if request.user.is_authenticated %}
+<div style="text-align: center;">
+    <form action="{% url 'add_comment' auction.id %}" method="post">{% csrf_token %}
+        <textarea name="comment" cols="50" rows="4"
+            style="background-color: rgb(237, 234, 234);border-radius: 0.5rem; max-width:100%" required></textarea><br>
+        <button type="submit" class="btn btn-secondary">Comment on Auction</button>
+    </form>
+</div>
+{% else %}
+<div style="padding: 0 0 0 15%;">
+    <a href="{% url 'login' %}"><input class="btn btn-secondary" type="submit" value="Comment on Auction" disabled></a>
+</div>
+{% endif %}
+{% endblock %}

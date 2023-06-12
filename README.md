@@ -1,7 +1,7 @@
 # ☀ ebay-auction ☀
 This repository will guide you to deploy Django APP on railway🚈  host server.
 
-# [DEMO WEBSITE](https://ebayauction.up.railway.app/)
+# [LINK TO THE DEMO WEBSITE](https://ebayauction.up.railway.app/)
 
 #### Before deploying following steps need to be done. 
 

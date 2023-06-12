@@ -15,7 +15,7 @@ This repository will guide you to deploy Django APP on railway🚈  host server.
 pip install -r requirements.txt
 ```
 
-#### 4 - follow steps shown in step by step guide. This guide starts from creating account on railways.
+#### 4 - Follow steps shown in step by step guide. Skip step 2 from following guide if you did above steps. This guide starts from creating account on railways.
 🚈 🚈 🚈 🚈 
 # Step by Step Guide To deploy Django app on Railway
 ![](https://github.com/ShubhamOulkar/ebay-auction/blob/main/auctions/static/favicon_io/1.png)

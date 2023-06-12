@@ -1,11 +1,25 @@
-# ebay-auction
-Local Library website written in Django
+# ☀ ebay-auction ☀
+This repository will guide you to deploy Django APP on railway🚈  host server.
 
 # [DEMO WEBSITE](https://ebayauction.up.railway.app/)
 
-![image](https://github.com/ShubhamOulkar/ebay-auction/assets/91728992/b0105cd9-3963-4829-9b7c-6c0d51b7466d)
+#### Before deploying following steps need to be done. 
 
+### 1 - Clone repo
+```
+ git clone https://github.com/ShubhamOulkar/ebay-auction.git
+```
+### 2 - Create virtual environment in current directory
+### 3 - Install requirements
+```
+pip install -r requirements.txt
+```
+
+#### 4 - follow steps shown in step by step guide. This guide starts from creating account on railways.
+🚈 🚈 🚈 🚈 
 # Step by Step Guide To deploy Django app on Railway
 ![](https://github.com/ShubhamOulkar/ebay-auction/blob/main/auctions/static/favicon_io/1.png)
 ![](https://github.com/ShubhamOulkar/ebay-auction/blob/main/auctions/static/favicon_io/2.png)
 
+### Final Deployed Website 😊 
+![image](https://github.com/ShubhamOulkar/ebay-auction/assets/91728992/b0105cd9-3963-4829-9b7c-6c0d51b7466d)

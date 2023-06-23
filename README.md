@@ -3,6 +3,8 @@ This repository will guide you to deploy Django APP on railway🚈  host server.
 
 # [LINK TO THE DEMO WEBSITE](https://ebayauction.up.railway.app/)
 
+# [YOUTUBE LINK](https://youtu.be/U41W6K5f6l8)
+
 #### Before deploying following steps need to be done. 
 
 ### 1 - Clone repo
